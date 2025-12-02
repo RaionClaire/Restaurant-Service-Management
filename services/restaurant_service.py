@@ -1,7 +1,6 @@
 """
 Restaurant Service Module
 Module ini berisi fungsi-fungsi untuk operasi bisnis restoran.
-Implementasi pemrograman terstruktur dengan fungsi-fungsi modular.
 """
 
 from database.db_manager import DatabaseManager

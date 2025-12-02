@@ -25,7 +25,7 @@
 ┌────────────────▼────────────────────┐
 │      Business Logic Layer           │
 │    services/restaurant_service.py   │
-│  (Pemrograman Terstruktur)         │
+│  (Pemrograman Terstruktur)          │
 └────────────────┬────────────────────┘
                  │
 ┌────────────────▼────────────────────┐
@@ -37,16 +37,16 @@
 ┌────────────────▼────────────────────┐
 │         Database Layer              │
 │       MySQL/MariaDB                 │
-│  (pelanggan, meja, pemesanan)      │
+│  (pelanggan, meja, pemesanan)       │
 └─────────────────────────────────────┘
 
 ┌─────────────────────────────────────┐
 │         Model Layer (OOP)           │
 │        models/                      │
 │  BaseEntity (Parent)                │
-│    ├─ Pelanggan (Child)            │
-│    ├─ Meja (Child)                 │
-│    └─ Pemesanan (Child)            │
+│    ├─ Pelanggan (Child)             │
+│    ├─ Meja (Child)                  │
+│    └─ Pemesanan (Child)             │
 └─────────────────────────────────────┘
 ```
 
@@ -443,8 +443,8 @@ if pemesanan.update_status(Pemesanan.STATUS_CONFIRMED):
 │ created_at      │         │ created_at      │
 └────────┬────────┘         └────────┬────────┘
          │                           │
-         │    ┌──────────────┐      │
-         └───>│  pemesanan   │<─────┘
+         │    ┌──────────────┐       │
+         └───>│  pemesanan   │<──────┘
               ├──────────────┤
               │ id (PK)      │
               │ pelanggan_id │ (FK)
