@@ -93,9 +93,9 @@ class RestaurantApp:
         self.clear_screen()
         self.tampilkan_header()
         print("\n📊 LAPORAN & ANALISIS:")
-        print("1. 📋 Laporan Semua Pemesanan (+ Analisis)")
-        print("2. 📌 Laporan by Status (+ Analisis)")
-        print("3. 📅 Laporan by Tanggal (+ Analisis)")
+        print("1. 📋 Laporan Semua Pemesanan")
+        print("2. 📌 Laporan by Status")
+        print("3. 📅 Laporan by Tanggal")
         print("4. 📈 Analisis Statistik Lengkap")
         print("0. ⬅️  Kembali")
         print("-"*60)
@@ -105,8 +105,13 @@ class RestaurantApp:
     def handle_tambah_pelanggan(self):
         """Handler untuk menambah pelanggan."""
         print("\n➕ --- TAMBAH PELANGGAN ---")
+        print("📋 Aturan Input:")
+        print("   • Nama: Tidak boleh mengandung angka, minimal 2 karakter")
+        print("   • Telepon: Harus dimulai dengan 628/08/+628, 10-15 digit")
+        print("   • Email: Harus mengandung @ dan . (contoh: nama@domain.com)\n")
+        
         nama = input("👤 Nama: ").strip()
-        telepon = input("📱 Telepon: ").strip()
+        telepon = input("📱 Telepon (628xxx/08xxx/+628xxx): ").strip()
         email = input("📧 Email (opsional): ").strip()
         
         tambah_pelanggan(self.db, nama, telepon, email)
@@ -146,10 +151,15 @@ class RestaurantApp:
     def handle_update_pelanggan(self):
         """Handler untuk update pelanggan."""
         print("\n--- UPDATE PELANGGAN ---")
+        print("📋 Aturan Input:")
+        print("   • Nama: Tidak boleh mengandung angka, minimal 2 karakter")
+        print("   • Telepon: Harus dimulai dengan 628/08/+628, 10-15 digit")
+        print("   • Email: Harus mengandung @ dan . (contoh: nama@domain.com)\n")
+        
         try:
             pelanggan_id = int(input("Masukkan ID Pelanggan: "))
             nama = input("Nama baru: ").strip()
-            telepon = input("Telepon baru: ").strip()
+            telepon = input("Telepon baru (628xxx/08xxx/+628xxx): ").strip()
             email = input("Email baru (opsional): ").strip()
             
             update_pelanggan(self.db, pelanggan_id, nama, telepon, email)
@@ -177,9 +187,13 @@ class RestaurantApp:
     def handle_tambah_meja(self):
         """Handler untuk menambah meja."""
         print("\n➕ --- TAMBAH MEJA ---")
+        print("📋 Aturan Input:")
+        print("   • Nomor Meja: 1-999")
+        print("   • Kapasitas: 1-20 orang\n")
+        
         try:
-            nomor_meja = int(input("🪑 Nomor Meja: "))
-            kapasitas = int(input("👥 Kapasitas (orang): "))
+            nomor_meja = int(input("🪑 Nomor Meja (1-999): "))
+            kapasitas = int(input("👥 Kapasitas (1-20 orang): "))
             print("\n📌 Status: 1) ✅ tersedia, 2) 🔴 terisi, 3) ⏳ reserved")
             status_choice = input("Pilih status (1-3, default 1): ").strip() or "1"
             
@@ -224,10 +238,14 @@ class RestaurantApp:
     def handle_update_meja(self):
         """Handler untuk update meja."""
         print("\n✏️  --- UPDATE MEJA ---")
+        print("📋 Aturan Input:")
+        print("   • Nomor Meja: 1-999")
+        print("   • Kapasitas: 1-20 orang\n")
+        
         try:
             meja_id = int(input("🔢 Masukkan ID Meja: "))
-            nomor_meja = int(input("🪑 Nomor Meja baru: "))
-            kapasitas = int(input("👥 Kapasitas baru: "))
+            nomor_meja = int(input("🪑 Nomor Meja baru (1-999): "))
+            kapasitas = int(input("👥 Kapasitas baru (1-20 orang): "))
             print("\n📌 Status: 1) ✅ tersedia, 2) 🔴 terisi, 3) ⏳ reserved")
             status_choice = input("Pilih status (1-3): ").strip()
             
@@ -259,6 +277,11 @@ class RestaurantApp:
     def handle_tambah_pemesanan(self):
         """Handler untuk membuat pemesanan baru."""
         print("\n--- BUAT PEMESANAN BARU ---")
+        print("📋 Aturan Input:")
+        print("   • Jumlah Orang: 1-20 orang")
+        print("   • Tanggal: Format YYYY-MM-DD HH:MM:SS (contoh: 2025-12-25 19:00:00)")
+        print("   • Catatan: Maksimal 500 karakter\n")
+        
         try:
             pelanggan_id = int(input("ID Pelanggan: "))
             meja_id = int(input("ID Meja: "))
@@ -271,8 +294,8 @@ class RestaurantApp:
             else:
                 tanggal_pemesanan = tanggal_input
             
-            jumlah_orang = int(input("Jumlah Orang: "))
-            catatan = input("Catatan (opsional): ").strip()
+            jumlah_orang = int(input("Jumlah Orang (1-20): "))
+            catatan = input("Catatan (opsional, max 500 karakter): ").strip()
             
             tambah_pemesanan(self.db, pelanggan_id, meja_id, tanggal_pemesanan, 
                            jumlah_orang, catatan)

@@ -85,23 +85,46 @@ class Pemesanan(BaseEntity):
     
     def validate_data(self):
         """
-        Validasi data pemesanan.
+        Validasi data pemesanan dengan exception handling.
         
         Returns:
             tuple: (bool, str) - (valid, pesan error)
+        
+        Raises:
+            ValueError: Jika data tidak valid
         """
-        if not self.pelanggan_id:
-            return False, "Pelanggan ID tidak boleh kosong"
+        # Validasi pelanggan_id tidak boleh kosong dan harus positif
+        if not self.pelanggan_id or self.pelanggan_id <= 0:
+            return False, "Pelanggan ID tidak boleh kosong dan harus valid"
         
-        if not self.meja_id:
-            return False, "Meja ID tidak boleh kosong"
+        # Validasi meja_id tidak boleh kosong dan harus positif
+        if not self.meja_id or self.meja_id <= 0:
+            return False, "Meja ID tidak boleh kosong dan harus valid"
         
+        # Validasi jumlah orang harus positif
         if self.jumlah_orang <= 0:
             return False, "Jumlah orang harus lebih dari 0"
         
+        # Validasi jumlah orang tidak boleh terlalu banyak
+        if self.jumlah_orang > 20:
+            return False, "Jumlah orang tidak boleh lebih dari 20"
+        
+        # Validasi format tanggal pemesanan
+        if self.tanggal_pemesanan:
+            try:
+                # Coba parse tanggal untuk memastikan formatnya valid
+                datetime.strptime(str(self.tanggal_pemesanan), '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                return False, "Format tanggal tidak valid (gunakan: YYYY-MM-DD HH:MM:SS)"
+        
+        # Validasi status harus valid
         valid_status = [self.STATUS_PENDING, self.STATUS_CONFIRMED, 
                        self.STATUS_COMPLETED, self.STATUS_CANCELLED]
         if self.status not in valid_status:
             return False, f"Status harus salah satu dari: {', '.join(valid_status)}"
+        
+        # Validasi catatan tidak boleh terlalu panjang
+        if self.catatan and len(self.catatan) > 500:
+            return False, "Catatan tidak boleh lebih dari 500 karakter"
         
         return True, ""

@@ -139,6 +139,8 @@ Setelah aplikasi berjalan, lakukan setup awal:
 2. Daftarkan pelanggan (Menu 1)
 3. Buat pemesanan (Menu 3)
 
+**⚠️ PENTING:** Baca [Aturan Validasi Input](VALIDASI.md) untuk mengetahui format input yang benar!
+
 ### 2. Alur Pemesanan Normal
 1. **Pelanggan mendaftar** → Menu Kelola Pelanggan → Tambah Pelanggan
 2. **Lihat meja tersedia** → Menu Kelola Meja → Lihat Meja Tersedia

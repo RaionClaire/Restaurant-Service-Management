@@ -77,17 +77,31 @@ class Meja(BaseEntity):
     
     def validate_data(self):
         """
-        Validasi data meja.
+        Validasi data meja dengan exception handling.
         
         Returns:
             tuple: (bool, str) - (valid, pesan error)
+        
+        Raises:
+            ValueError: Jika data tidak valid
         """
+        # Validasi nomor meja harus positif
         if self.nomor_meja <= 0:
             return False, "Nomor meja harus lebih dari 0"
         
+        # Validasi nomor meja tidak boleh terlalu besar
+        if self.nomor_meja > 999:
+            return False, "Nomor meja tidak boleh lebih dari 999"
+        
+        # Validasi kapasitas harus positif
         if self.kapasitas <= 0:
             return False, "Kapasitas harus lebih dari 0"
         
+        # Validasi kapasitas wajar (minimal 1, maksimal 20 orang)
+        if self.kapasitas > 20:
+            return False, "Kapasitas meja tidak boleh lebih dari 20 orang"
+        
+        # Validasi status harus valid
         valid_status = [self.STATUS_TERSEDIA, self.STATUS_TERISI, self.STATUS_RESERVED]
         if self.status not in valid_status:
             return False, f"Status harus salah satu dari: {', '.join(valid_status)}"
