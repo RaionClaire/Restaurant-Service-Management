@@ -353,8 +353,8 @@ Project ini dibuat untuk keperluan praktik demonstrasi dan pembelajaran.
 
 ## 👥 Kontributor
 
-- Developer: Restaurant Management System Team
-- Tanggal: Desember 2025
+- Developer: Adinda Salsabila
+- Bulan Produksi: Desember 2025
 
 ---
 
