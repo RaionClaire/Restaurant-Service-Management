@@ -670,6 +670,187 @@ TOTAL                    100%
 
 ---
 
+---
+
+## Fitur Baru (Update Desember 2025)
+
+### 🎨 Simbol Visual yang Menarik
+
+Aplikasi kini dilengkapi dengan simbol-simbol visual (emoji) untuk meningkatkan user experience:
+
+**Menu Utama:**
+- 🍽️ Header aplikasi dengan logo restoran
+- 👤 Kelola Pelanggan
+- 🪑 Kelola Meja  
+- 📝 Kelola Pemesanan
+- 📊 Laporan & Analisis
+- 🧪 Jalankan Unit Tests
+- 🚪 Keluar
+
+**Status Simbol:**
+- ⏳ Pending - Pemesanan menunggu konfirmasi
+- ✅ Confirmed - Pemesanan dikonfirmasi
+- 🎉 Completed - Pemesanan selesai
+- ❌ Cancelled - Pemesanan dibatalkan
+- 🟢 Tersedia - Meja tersedia
+- 🔴 Terisi - Meja sedang digunakan
+
+**Simbol Input:**
+- 👤 Nama pelanggan
+- 📱 Nomor telepon
+- 📧 Email
+- 🪑 Nomor meja
+- 👥 Kapasitas/jumlah orang
+- 📅 Tanggal
+- 📝 Catatan
+
+### 📊 Fitur Analisis Statistik
+
+#### 1. Analisis Otomatis di Laporan
+
+Setiap laporan kini dilengkapi dengan analisis statistik otomatis:
+
+```python
+# Fungsi baru: analisis_laporan()
+def analisis_laporan(laporan: List[Dict]) -> Dict:
+    """
+    Menganalisis data laporan dan menghasilkan statistik.
+    
+    Returns:
+        dict: {
+            'total_pemesanan': int,
+            'total_orang': int,
+            'avg_orang': float,
+            'status_count': dict,
+            'meja_populer': tuple,
+            'pelanggan_setia': tuple
+        }
+    """
+```
+
+**Metrik yang Dianalisis:**
+- 🔢 Total Pemesanan
+- 👥 Total Tamu
+- 📊 Rata-rata Tamu per Pemesanan
+- 📌 Distribusi Status (dengan persentase)
+- 🏆 Meja Paling Populer
+- ⭐ Pelanggan Setia (terbanyak pesan)
+
+#### 2. Visualisasi Data
+
+**Bar Chart ASCII:**
+```
+✅ confirmed  :  15 (45.5%) ████████████████████████
+⏳ pending    :  10 (30.3%) ████████████████
+🎉 completed  :   5 (15.2%) ████████
+❌ cancelled  :   3 ( 9.1%) █████
+```
+
+**Success Rate Bar:**
+```
+📊 Success Rate: 87.5%
+   [████████████████████████████████████████████░░░░░]
+   
+   🎉 Selesai   :  28 pemesanan
+   ❌ Dibatalkan:   4 pemesanan
+```
+
+#### 3. Dashboard Statistik Lengkap
+
+Menu baru: **Analisis Statistik Lengkap** (menu Laporan → pilihan 4)
+
+Fitur dashboard:
+- 📊 Metrik kinerja umum
+- 📌 Distribusi status dengan bar chart
+- 🏆 Top performers (meja & pelanggan)
+- 📈 Tingkat keberhasilan (success rate)
+- 📊 Visual representation dengan ASCII art
+
+### 🎯 Penggunaan Fitur Baru
+
+#### Melihat Laporan dengan Analisis:
+
+```python
+# Di aplikasi, pilih:
+Menu Utama → 4. 📊 Laporan & Analisis
+  → 1. 📋 Laporan Semua Pemesanan (+ Analisis)
+
+# Output akan menampilkan:
+# 1. Tabel pemesanan dengan simbol status
+# 2. Analisis statistik otomatis
+# 3. Bar chart distribusi status
+# 4. Top performers
+```
+
+#### Melihat Dashboard Lengkap:
+
+```python
+# Di aplikasi, pilih:
+Menu Utama → 4. 📊 Laporan & Analisis
+  → 4. 📈 Analisis Statistik Lengkap
+
+# Output:
+# - Dashboard dengan semua metrik
+# - Bar chart untuk setiap status
+# - Success rate visual
+# - Top performers
+```
+
+#### Testing Fitur Baru:
+
+```bash
+# Jalankan demo analisis
+python demo_analisis.py
+
+# Demo akan:
+# 1. Membuat 5 pelanggan sample
+# 2. Membuat 10 meja
+# 3. Membuat 11 pemesanan dengan berbagai status
+# 4. Menampilkan laporan dengan analisis
+# 5. Menampilkan dashboard statistik
+```
+
+### 📝 Fungsi Baru yang Ditambahkan
+
+**services/restaurant_service.py:**
+```python
+def analisis_laporan(laporan: List[Dict]) -> Dict:
+    """Menganalisis data laporan dan menghasilkan statistik lengkap."""
+    # Returns: statistik dengan metrik lengkap
+```
+
+**main.py:**
+```python
+def handle_analisis_statistik(self):
+    """Handler untuk menampilkan dashboard analisis statistik lengkap."""
+    # Menampilkan:
+    # - Statistik umum
+    # - Distribusi status dengan bar chart
+    # - Performa restoran
+    # - Tingkat keberhasilan
+```
+
+### 🎨 Update UI/UX
+
+**Sebelum:**
+```
+--- TAMBAH MEJA ---
+Nomor Meja: 5
+Kapasitas (orang): 4
+Status: 1) tersedia, 2) terisi, 3) reserved
+```
+
+**Sesudah:**
+```
+➕ --- TAMBAH MEJA ---
+🪑 Nomor Meja: 5
+👥 Kapasitas (orang): 4
+
+📌 Status: 1) ✅ tersedia, 2) 🔴 terisi, 3) ⏳ reserved
+```
+
+---
+
 ## Kesimpulan
 
 Sistem Pemesanan Restoran telah berhasil diimplementasikan dengan lengkap mencakup:
@@ -681,11 +862,15 @@ Sistem Pemesanan Restoran telah berhasil diimplementasikan dengan lengkap mencak
 ✅ **Dokumentasi**: Lengkap dengan docstring dan README
 ✅ **Debugging**: Error handling dan logging
 ✅ **Testing**: 27 unit tests dengan 100% coverage
+✅ **Analisis Data**: Statistik otomatis dan visualisasi (NEW!)
+✅ **UI/UX**: Simbol visual yang menarik dan intuitif (NEW!)
 
 Sistem siap digunakan untuk praktik demonstrasi!
 
 ---
 
-**Dokumentasi Versi**: 1.0
+**Dokumentasi Versi**: 1.1
 **Tanggal**: Desember 2025
+**Update Terakhir**: Desember 2, 2025
 **Status**: Production Ready ✅
+**Fitur Baru**: Analisis Statistik & Visual Symbols 🎨📊

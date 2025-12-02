@@ -2,7 +2,7 @@
 Aplikasi Sistem Pemesanan Restoran
 Aplikasi untuk mengelola pemesanan meja restoran dengan interface console.
 
-Author: Restaurant Management System
+Author: Adinda Salsabila
 Date: December 2025
 """
 
@@ -31,98 +31,99 @@ class RestaurantApp:
     def tampilkan_header(self):
         """Menampilkan header aplikasi."""
         print("\n" + "="*60)
-        print(" "*15 + "SISTEM PEMESANAN RESTORAN")
+        print(" "*10 + "🍽️  SISTEM PEMESANAN RESTORAN  🍽️")
         print("="*60)
     
     def tampilkan_menu_utama(self):
         """Menampilkan menu utama aplikasi."""
         self.clear_screen()
         self.tampilkan_header()
-        print("\nMENU UTAMA:")
-        print("1. Kelola Pelanggan")
-        print("2. Kelola Meja")
-        print("3. Kelola Pemesanan")
-        print("4. Laporan")
-        print("5. Jalankan Unit Tests")
-        print("0. Keluar")
+        print("\n📋 MENU UTAMA:")
+        print("1. 👤 Kelola Pelanggan")
+        print("2. 🪑 Kelola Meja")
+        print("3. 📝 Kelola Pemesanan")
+        print("4. 📊 Laporan & Analisis")
+        print("5. 🧪 Jalankan Unit Tests")
+        print("0. 🚪 Keluar")
         print("-"*60)
     
     def tampilkan_menu_pelanggan(self):
         """Menampilkan menu kelola pelanggan."""
         self.clear_screen()
         self.tampilkan_header()
-        print("\nKELOLA PELANGGAN:")
-        print("1. Tambah Pelanggan")
-        print("2. Lihat Semua Pelanggan")
-        print("3. Cari Pelanggan (by ID)")
-        print("4. Update Pelanggan")
-        print("5. Hapus Pelanggan")
-        print("0. Kembali")
+        print("\n👤 KELOLA PELANGGAN:")
+        print("1. ➕ Tambah Pelanggan")
+        print("2. 📋 Lihat Semua Pelanggan")
+        print("3. 🔍 Cari Pelanggan (by ID)")
+        print("4. ✏️  Update Pelanggan")
+        print("5. 🗑️  Hapus Pelanggan")
+        print("0. ⬅️  Kembali")
         print("-"*60)
     
     def tampilkan_menu_meja(self):
         """Menampilkan menu kelola meja."""
         self.clear_screen()
         self.tampilkan_header()
-        print("\nKELOLA MEJA:")
-        print("1. Tambah Meja")
-        print("2. Lihat Semua Meja")
-        print("3. Lihat Meja Tersedia")
-        print("4. Update Meja")
-        print("5. Hapus Meja")
-        print("0. Kembali")
+        print("\n🪑 KELOLA MEJA:")
+        print("1. ➕ Tambah Meja")
+        print("2. 📋 Lihat Semua Meja")
+        print("3. ✅ Lihat Meja Tersedia")
+        print("4. ✏️  Update Meja")
+        print("5. 🗑️  Hapus Meja")
+        print("0. ⬅️  Kembali")
         print("-"*60)
     
     def tampilkan_menu_pemesanan(self):
         """Menampilkan menu kelola pemesanan."""
         self.clear_screen()
         self.tampilkan_header()
-        print("\nKELOLA PEMESANAN:")
-        print("1. Buat Pemesanan Baru")
-        print("2. Lihat Semua Pemesanan")
-        print("3. Lihat Pemesanan (by Status)")
-        print("4. Konfirmasi Pemesanan")
-        print("5. Selesaikan Pemesanan")
-        print("6. Batalkan Pemesanan")
-        print("7. Hapus Pemesanan")
-        print("0. Kembali")
+        print("\n📝 KELOLA PEMESANAN:")
+        print("1. ➕ Buat Pemesanan Baru")
+        print("2. 📋 Lihat Semua Pemesanan")
+        print("3. 🔍 Lihat Pemesanan (by Status)")
+        print("4. ✅ Konfirmasi Pemesanan")
+        print("5. 🎉 Selesaikan Pemesanan")
+        print("6. ❌ Batalkan Pemesanan")
+        print("7. 🗑️  Hapus Pemesanan")
+        print("0. ⬅️  Kembali")
         print("-"*60)
     
     def tampilkan_menu_laporan(self):
         """Menampilkan menu laporan."""
         self.clear_screen()
         self.tampilkan_header()
-        print("\nLAPORAN:")
-        print("1. Laporan Semua Pemesanan")
-        print("2. Laporan by Status")
-        print("3. Laporan by Tanggal")
-        print("0. Kembali")
+        print("\n📊 LAPORAN & ANALISIS:")
+        print("1. 📋 Laporan Semua Pemesanan (+ Analisis)")
+        print("2. 📌 Laporan by Status (+ Analisis)")
+        print("3. 📅 Laporan by Tanggal (+ Analisis)")
+        print("4. 📈 Analisis Statistik Lengkap")
+        print("0. ⬅️  Kembali")
         print("-"*60)
     
     # ========== HANDLER PELANGGAN ==========
     
     def handle_tambah_pelanggan(self):
         """Handler untuk menambah pelanggan."""
-        print("\n--- TAMBAH PELANGGAN ---")
-        nama = input("Nama: ").strip()
-        telepon = input("Telepon: ").strip()
-        email = input("Email (opsional): ").strip()
+        print("\n➕ --- TAMBAH PELANGGAN ---")
+        nama = input("👤 Nama: ").strip()
+        telepon = input("📱 Telepon: ").strip()
+        email = input("📧 Email (opsional): ").strip()
         
         tambah_pelanggan(self.db, nama, telepon, email)
-        input("\nTekan Enter untuk melanjutkan...")
+        input("\n⏎ Tekan Enter untuk melanjutkan...")
     
     def handle_lihat_pelanggan(self):
         """Handler untuk melihat semua pelanggan."""
-        print("\n--- DAFTAR PELANGGAN ---")
+        print("\n📋 --- DAFTAR PELANGGAN ---")
         pelanggan_list = lihat_pelanggan(self.db)
         
         if pelanggan_list:
-            print(f"\n{'ID':<5} {'Nama':<25} {'Telepon':<15} {'Email':<30}")
-            print("-"*75)
+            print(f"\n{'ID':<5} {'👤 Nama':<27} {'📱 Telepon':<17} {'📧 Email':<30}")
+            print("-"*79)
             for p in pelanggan_list:
-                print(f"{p['id']:<5} {p['nama']:<25} {p['telepon']:<15} {p['email'] or '-':<30}")
+                print(f"{p['id']:<5} {p['nama']:<27} {p['telepon']:<17} {p['email'] or '-':<30}")
         
-        input("\nTekan Enter untuk melanjutkan...")
+        input("\n⏎ Tekan Enter untuk melanjutkan...")
     
     def handle_cari_pelanggan(self):
         """Handler untuk mencari pelanggan by ID."""
@@ -175,11 +176,11 @@ class RestaurantApp:
     
     def handle_tambah_meja(self):
         """Handler untuk menambah meja."""
-        print("\n--- TAMBAH MEJA ---")
+        print("\n➕ --- TAMBAH MEJA ---")
         try:
-            nomor_meja = int(input("Nomor Meja: "))
-            kapasitas = int(input("Kapasitas (orang): "))
-            print("Status: 1) tersedia, 2) terisi, 3) reserved")
+            nomor_meja = int(input("🪑 Nomor Meja: "))
+            kapasitas = int(input("👥 Kapasitas (orang): "))
+            print("\n📌 Status: 1) ✅ tersedia, 2) 🔴 terisi, 3) ⏳ reserved")
             status_choice = input("Pilih status (1-3, default 1): ").strip() or "1"
             
             status_map = {'1': 'tersedia', '2': 'terisi', '3': 'reserved'}
@@ -189,42 +190,45 @@ class RestaurantApp:
         except ValueError:
             print("✗ Input harus berupa angka")
         
-        input("\nTekan Enter untuk melanjutkan...")
+        input("\n⏎ Tekan Enter untuk melanjutkan...")
     
     def handle_lihat_meja(self):
         """Handler untuk melihat semua meja."""
-        print("\n--- DAFTAR MEJA ---")
+        print("\n📋 --- DAFTAR MEJA ---")
         meja_list = lihat_meja(self.db)
         
         if meja_list:
-            print(f"\n{'ID':<5} {'Nomor Meja':<12} {'Kapasitas':<12} {'Status':<15}")
-            print("-"*44)
+            status_symbol = {'tersedia': '✅', 'terisi': '🔴', 'reserved': '⏳'}
+            print(f"\n{'ID':<5} {'🪑 Nomor':<14} {'👥 Kapasitas':<14} {'📌 Status':<17}")
+            print("-"*50)
             for m in meja_list:
-                print(f"{m['id']:<5} {m['nomor_meja']:<12} {m['kapasitas']:<12} {m['status']:<15}")
+                symbol = status_symbol.get(m['status'], '•')
+                status_display = f"{symbol} {m['status']}"
+                print(f"{m['id']:<5} #{m['nomor_meja']:<13} {m['kapasitas']:<14} {status_display:<17}")
         
-        input("\nTekan Enter untuk melanjutkan...")
+        input("\n⏎ Tekan Enter untuk melanjutkan...")
     
     def handle_lihat_meja_tersedia(self):
         """Handler untuk melihat meja tersedia."""
-        print("\n--- MEJA TERSEDIA ---")
+        print("\n✅ --- MEJA TERSEDIA ---")
         meja_list = lihat_meja_tersedia(self.db)
         
         if meja_list:
-            print(f"\n{'ID':<5} {'Nomor Meja':<12} {'Kapasitas':<12}")
-            print("-"*29)
+            print(f"\n{'ID':<5} {'🪑 Nomor Meja':<14} {'👥 Kapasitas':<14}")
+            print("-"*33)
             for m in meja_list:
-                print(f"{m['id']:<5} {m['nomor_meja']:<12} {m['kapasitas']:<12}")
+                print(f"{m['id']:<5} #{m['nomor_meja']:<13} {m['kapasitas']:<14}")
         
-        input("\nTekan Enter untuk melanjutkan...")
+        input("\n⏎ Tekan Enter untuk melanjutkan...")
     
     def handle_update_meja(self):
         """Handler untuk update meja."""
-        print("\n--- UPDATE MEJA ---")
+        print("\n✏️  --- UPDATE MEJA ---")
         try:
-            meja_id = int(input("Masukkan ID Meja: "))
-            nomor_meja = int(input("Nomor Meja baru: "))
-            kapasitas = int(input("Kapasitas baru: "))
-            print("Status: 1) tersedia, 2) terisi, 3) reserved")
+            meja_id = int(input("🔢 Masukkan ID Meja: "))
+            nomor_meja = int(input("🪑 Nomor Meja baru: "))
+            kapasitas = int(input("👥 Kapasitas baru: "))
+            print("\n📌 Status: 1) ✅ tersedia, 2) 🔴 terisi, 3) ⏳ reserved")
             status_choice = input("Pilih status (1-3): ").strip()
             
             status_map = {'1': 'tersedia', '2': 'terisi', '3': 'reserved'}
@@ -234,14 +238,14 @@ class RestaurantApp:
         except ValueError:
             print("✗ Input harus berupa angka")
         
-        input("\nTekan Enter untuk melanjutkan...")
+        input("\n⏎ Tekan Enter untuk melanjutkan...")
     
     def handle_hapus_meja(self):
         """Handler untuk hapus meja."""
-        print("\n--- HAPUS MEJA ---")
+        print("\n🗑️  --- HAPUS MEJA ---")
         try:
-            meja_id = int(input("Masukkan ID Meja: "))
-            konfirmasi = input(f"Yakin ingin menghapus meja ID {meja_id}? (y/n): ")
+            meja_id = int(input("🔢 Masukkan ID Meja: "))
+            konfirmasi = input(f"⚠️  Yakin ingin menghapus meja ID {meja_id}? (y/n): ")
             
             if konfirmasi.lower() == 'y':
                 hapus_meja(self.db, meja_id)
@@ -498,6 +502,75 @@ class RestaurantApp:
                 print("✗ Pilihan tidak valid")
                 input("\nTekan Enter untuk melanjutkan...")
     
+    def handle_analisis_statistik(self):
+        """Handler untuk menampilkan analisis statistik lengkap."""
+        print("\n📈 --- ANALISIS STATISTIK LENGKAP ---\n")
+        
+        # Ambil semua data pemesanan
+        from services.restaurant_service import analisis_laporan
+        laporan = generate_laporan_pemesanan(self.db)
+        
+        if not laporan:
+            print("❌ Tidak ada data untuk dianalisis")
+            input("\n⏎ Tekan Enter untuk melanjutkan...")
+            return
+        
+        analisis = analisis_laporan(laporan)
+        
+        if analisis:
+            print("="*70)
+            print("📊 DASHBOARD STATISTIK RESTORAN")
+            print("="*70)
+            
+            # Statistik Umum
+            print("\n📌 STATISTIK UMUM:")
+            print(f"   🔢 Total Pemesanan        : {analisis['total_pemesanan']} pemesanan")
+            print(f"   👥 Total Tamu             : {analisis['total_orang']} orang")
+            print(f"   📊 Rata-rata Tamu/Pesanan : {analisis['avg_orang']:.2f} orang")
+            
+            # Distribusi Status dengan Bar Chart
+            print("\n📌 DISTRIBUSI STATUS:")
+            status_symbol = {
+                'pending': '⏳',
+                'confirmed': '✅',
+                'completed': '🎉',
+                'cancelled': '❌'
+            }
+            
+            for status, count in sorted(analisis['status_count'].items(), key=lambda x: x[1], reverse=True):
+                symbol = status_symbol.get(status, '•')
+                percentage = (count / analisis['total_pemesanan']) * 100
+                bar_length = int(percentage / 2)  # Skala 50 karakter
+                bar = '█' * bar_length + '░' * (50 - bar_length)
+                print(f"   {symbol} {status:10} : {count:3} ({percentage:5.1f}%) [{bar}]")
+            
+            # Performa Restoran
+            print("\n🏆 PERFORMA RESTORAN:")
+            if analisis['meja_populer'][0]:
+                print(f"   🪑 Meja Terpopuler       : Meja #{analisis['meja_populer'][0]} ({analisis['meja_populer'][1]} kali pemesanan)")
+            if analisis['pelanggan_setia'][0]:
+                print(f"   ⭐ Pelanggan Setia        : {analisis['pelanggan_setia'][0]} ({analisis['pelanggan_setia'][1]} kali pemesanan)")
+            
+            # Tingkat Keberhasilan
+            completed = analisis['status_count'].get('completed', 0)
+            cancelled = analisis['status_count'].get('cancelled', 0)
+            total_selesai = completed + cancelled
+            
+            if total_selesai > 0:
+                success_rate = (completed / total_selesai) * 100
+                print(f"\n📈 TINGKAT KEBERHASILAN:")
+                print(f"   🎉 Pemesanan Selesai      : {completed}")
+                print(f"   ❌ Pemesanan Dibatalkan   : {cancelled}")
+                print(f"   📊 Success Rate          : {success_rate:.1f}%")
+                
+                # Visual success rate
+                success_bar = '█' * int(success_rate / 2)
+                print(f"   [{success_bar:<50}]")
+            
+            print("\n" + "="*70)
+        
+        input("\n⏎ Tekan Enter untuk melanjutkan...")
+    
     def menu_laporan_loop(self):
         """Loop untuk menu laporan."""
         while True:
@@ -510,11 +583,13 @@ class RestaurantApp:
                 self.handle_laporan_by_status()
             elif pilihan == '3':
                 self.handle_laporan_by_tanggal()
+            elif pilihan == '4':
+                self.handle_analisis_statistik()
             elif pilihan == '0':
                 break
             else:
                 print("✗ Pilihan tidak valid")
-                input("\nTekan Enter untuk melanjutkan...")
+                input("\n⏎ Tekan Enter untuk melanjutkan...")
     
     def handle_run_tests(self):
         """Handler untuk menjalankan unit tests."""

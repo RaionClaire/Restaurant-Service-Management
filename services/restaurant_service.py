@@ -494,36 +494,121 @@ def generate_laporan_pemesanan(db: DatabaseManager, status: str = None,
         return None
 
 
+def analisis_laporan(laporan: List[Dict]) -> Dict:
+    """
+    Menganalisis data laporan pemesanan dan menghasilkan statistik.
+    
+    Args:
+        laporan (list): List dictionary data pemesanan
+    
+    Returns:
+        dict: Dictionary berisi statistik analisis
+    """
+    if not laporan or len(laporan) == 0:
+        return None
+    
+    # Hitung statistik
+    total_pemesanan = len(laporan)
+    total_orang = sum(item['jumlah_orang'] for item in laporan)
+    
+    # Statistik per status
+    status_count = {}
+    for item in laporan:
+        status = item['status']
+        status_count[status] = status_count.get(status, 0) + 1
+    
+    # Rata-rata jumlah orang per pemesanan
+    avg_orang = total_orang / total_pemesanan if total_pemesanan > 0 else 0
+    
+    # Meja paling populer
+    meja_count = {}
+    for item in laporan:
+        meja = item['nomor_meja']
+        meja_count[meja] = meja_count.get(meja, 0) + 1
+    
+    meja_populer = max(meja_count.items(), key=lambda x: x[1]) if meja_count else (None, 0)
+    
+    # Pelanggan dengan pemesanan terbanyak
+    pelanggan_count = {}
+    for item in laporan:
+        pelanggan = item['nama_pelanggan']
+        pelanggan_count[pelanggan] = pelanggan_count.get(pelanggan, 0) + 1
+    
+    pelanggan_setia = max(pelanggan_count.items(), key=lambda x: x[1]) if pelanggan_count else (None, 0)
+    
+    return {
+        'total_pemesanan': total_pemesanan,
+        'total_orang': total_orang,
+        'avg_orang': avg_orang,
+        'status_count': status_count,
+        'meja_populer': meja_populer,
+        'pelanggan_setia': pelanggan_setia
+    }
+
+
 def print_laporan(laporan: List[Dict]):
     """
-    Mencetak laporan pemesanan dengan format yang rapi.
+    Mencetak laporan pemesanan dengan format yang rapi dan analisis.
     
     Args:
         laporan (list): List dictionary data pemesanan
     """
     if not laporan or len(laporan) == 0:
-        print("Tidak ada data untuk ditampilkan")
+        print("\n📊 Tidak ada data untuk ditampilkan")
         return
     
     print("\n" + "="*100)
-    print("LAPORAN PEMESANAN RESTORAN")
+    print("📊 LAPORAN PEMESANAN RESTORAN")
     print("="*100)
     
-    # Header tabel
-    print(f"{'ID':<5} {'Pelanggan':<20} {'Meja':<6} {'Tanggal':<20} {'Orang':<7} {'Status':<12} {'Catatan':<20}")
+    # Header tabel dengan simbol
+    print(f"{'ID':<5} {'👤 Pelanggan':<22} {'🪑 Meja':<8} {'📅 Tanggal':<20} {'👥 Org':<7} {'📌 Status':<14} {'📝 Catatan':<20}")
     print("-"*100)
     
-    # Data
+    # Data dengan simbol status
+    status_symbol = {
+        'pending': '⏳',
+        'confirmed': '✅',
+        'completed': '🎉',
+        'cancelled': '❌'
+    }
+    
     for item in laporan:
         pemesanan_id = str(item['id'])
-        nama = item['nama_pelanggan'][:19]  # Batasi panjang
+        nama = item['nama_pelanggan'][:20]  # Batasi panjang
         meja = f"#{item['nomor_meja']}"
         tanggal = str(item['tanggal_pemesanan'])[:19]
         orang = str(item['jumlah_orang'])
         status = item['status']
+        status_display = f"{status_symbol.get(status, '•')} {status}"
         catatan = item['catatan'][:19] if item['catatan'] else "-"
         
-        print(f"{pemesanan_id:<5} {nama:<20} {meja:<6} {tanggal:<20} {orang:<7} {status:<12} {catatan:<20}")
+        print(f"{pemesanan_id:<5} {nama:<22} {meja:<8} {tanggal:<20} {orang:<7} {status_display:<14} {catatan:<20}")
     
     print("="*100)
-    print(f"Total: {len(laporan)} pemesanan\n")
+    print(f"📈 Total: {len(laporan)} pemesanan")
+    
+    # Tampilkan analisis
+    analisis = analisis_laporan(laporan)
+    if analisis:
+        print("\n" + "="*100)
+        print("📊 ANALISIS DATA")
+        print("="*100)
+        print(f"\n🔢 Total Pemesanan        : {analisis['total_pemesanan']} pemesanan")
+        print(f"👥 Total Tamu             : {analisis['total_orang']} orang")
+        print(f"📊 Rata-rata Tamu/Pesanan : {analisis['avg_orang']:.1f} orang")
+        
+        print("\n📌 Distribusi Status:")
+        for status, count in analisis['status_count'].items():
+            symbol = status_symbol.get(status, '•')
+            percentage = (count / analisis['total_pemesanan']) * 100
+            bar = '█' * int(percentage / 5)  # Bar chart sederhana
+            print(f"   {symbol} {status:10} : {count:3} ({percentage:5.1f}%) {bar}")
+        
+        if analisis['meja_populer'][0]:
+            print(f"\n🏆 Meja Paling Populer    : Meja #{analisis['meja_populer'][0]} ({analisis['meja_populer'][1]} kali)")
+        
+        if analisis['pelanggan_setia'][0]:
+            print(f"⭐ Pelanggan Setia        : {analisis['pelanggan_setia'][0]} ({analisis['pelanggan_setia'][1]} kali)")
+        
+        print("\n" + "="*100 + "\n")
